@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mi repositorio personal de prompts para IA">
+  <title>PromptVault | Repositorio IA</title>
+  <!-- Enlace al archivo CSS que estará en la carpeta css -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Cabecera semántica -->
+  <header class="main-header">
+    <div class="header-content">
+      <h1>Prompt<span>Vault</span></h1>
+      <div class="actions">
+        <button id="btn-new-prompt" class="btn btn-primary" aria-haspopup="dialog">➕ Nuevo Prompt</button>
+        <button id="btn-export" class="btn btn-secondary" title="Exportar a JSON">💾 Exportar</button>
+        <label for="file-import" class="btn btn-secondary" tabindex="0" role="button" aria-label="Importar archivo JSON">📂 Importar</label>
+        <input type="file" id="file-import" accept=".json" class="visually-hidden">
+      </div>
+    </div>
+    
+    <section class="search-bar" aria-label="Búsqueda de prompts">
+      <input type="search" id="search-input" placeholder="🔍 Buscar por palabra clave, etiqueta o texto..." aria-label="Buscar prompts">
+    </section>
+  </header>
+
+  <!-- Contenedor principal con layout Flex/Grid -->
+  <div class="layout-wrapper">
+    
+    <!-- Navegación lateral de categorías -->
+    <nav class="sidebar" aria-label="Categorías">
+      <h2>Categorías</h2>
+      <ul id="category-list">
+        <!-- Las categorías se inyectan dinámicamente con JS -->
+      </ul>
+    </nav>
+
+    <!-- Área principal de contenido -->
+    <main class="main-content">
+      <header class="content-header">
+        <h2 id="current-category">Todas las categorías</h2>
+        <span id="prompt-count" class="badge">0 prompts</span>
+      </header>
+
+      <!-- Grid de tarjetas -->
+      <section id="prompts-grid" class="prompts-grid" aria-live="polite">
+        <!-- Las tarjetas (<article>) se inyectan dinámicamente con JS -->
+      </section>
+
+      <!-- Estado vacío -->
+      <div id="empty-state" class="empty-state hidden">
+        <p>No se encontraron prompts. ¡Agrega uno nuevo!</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Pie de página semántico -->
+  <footer class="main-footer">
+    <p>&copy; 2026 PromptVault. Creado con HTML5, CSS3 y JS Moderno.</p>
+  </footer>
+
+  <!-- Modal nativo de HTML5 para agregar prompts -->
+  <dialog id="prompt-modal" class="modal" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <header class="modal-header">
+        <h3 id="modal-title">Agregar Prompt</h3>
+        <button id="btn-close-modal" class="btn-close" aria-label="Cerrar modal">&times;</button>
+      </header>
+      
+      <form id="prompt-form">
+        <div class="form-group">
+          <label for="prompt-title">Título *</label>
+          <input type="text" id="prompt-title" required placeholder="Ej. Generador de código Python">
+        </div>
+        
+        <div class="form-group">
+          <label for="prompt-category">Categoría *</label>
+          <input type="text" id="prompt-category" required placeholder="Ej. Programación, Marketing, etc." list="category-options">
+          <datalist id="category-options">
+            <!-- Opciones inyectadas dinámicamente -->
+          </datalist>
+        </div>
+        
+        <div class="form-group">
+          <label for="prompt-tags">Etiquetas (separadas por coma)</label>
+          <input type="text" id="prompt-tags" placeholder="python, backend, refactor">
+        </div>
+        
+        <div class="form-group">
+          <label for="prompt-text">Prompt *</label>
+          <textarea id="prompt-text" rows="5" required placeholder="Escribe tu prompt aquí..."></textarea>
+        </div>
+        
+        <footer class="modal-actions">
+          <button type="button" id="btn-cancel-modal" class="btn btn-secondary">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </footer>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Enlace al archivo JS que estará en la carpeta js -->
+  <script src="js/app.js"></script>
+</body>
+</html>
